@@ -18,14 +18,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Create strong-name key file
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path "build/keys" | Out-Null
-          [IO.File]::WriteAllBytes(
-            "build/keys/DiracDelta.ThirdParty.snk",
-            [Convert]::FromBase64String("${{ secrets.DIRACDELTA_THIRDPARTY_SNK_BASE64 }}"))
-
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -36,6 +28,26 @@ jobs:
 
       - name: Restore
         run: dotnet restore
+
+      - name: Create strong-name key file
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "build/keys" | Out-Null
+          [IO.File]::WriteAllBytes(
+            "build/keys/DiracDelta.ThirdParty.snk",
+            [Convert]::FromBase64String("${{ secrets.DIRACDELTA_THIRDPARTY_SNK_BASE64 }}"))
+
+      - name: Verify signing key file
+        shell: pwsh
+        run: |
+          Get-ChildItem -Recurse build
+          Test-Path "build/keys/DiracDelta.ThirdParty.snk"
+
+      - name: Print working directory
+        shell: pwsh
+        run: |
+          Get-Location
+          Get-ChildItem
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
