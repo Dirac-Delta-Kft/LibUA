@@ -4,16 +4,17 @@
     <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <PackageId>DiracDelta.LibUA.StrongNamed</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/Dirac-Delta-Kft/SWDuna.PavementStone.CollectProdData</PackageProjectUrl>
-    <Copyright>(c) Dirac-Delta Kft. 2026-(now)</Copyright>
-    <Description>Open-source OPC UA client and server library for .NET Core.</Description>
-    <Title>LibUA Core</Title>
+    <PackageProjectUrl>https://github.com/Dirac-Delta-Kft/LibUA</PackageProjectUrl>
+    <Copyright>Copyright Nauful Shaikh, QuantenSystems LLC. Fork maintained and modified by Dirac-Delta Kft.</Copyright>
+    <Description>Strong-named build of the LibUA OPC UA client and server library for internal use by Dirac-Delta Kft.</Description>
+    <Title>LibUA Core Strong-Named</Title>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Dirac-Delta-Kft/SWDuna.PavementStone.CollectProdData</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Dirac-Delta-Kft/LibUA</RepositoryUrl>
     <Version>1.0.45-diracdelta.1</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>latest</LangVersion>
+    <Authors>Nauful Shaikh</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

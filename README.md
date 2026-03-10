@@ -25,3 +25,9 @@ Standard Apache License 2.0.
 
 ### Errata
 The demo client and server applications can create self-signed certificates with sufficient fields for most usage. Remember to move these to the trusted directory on a server when connecting to a server for the first time.
+
+### Modifications
+Modified by Dirac-Delta Kft.
+Changes:
+- Added strong-name signing support.
+- Adjusted package metadata for internal distribution.
