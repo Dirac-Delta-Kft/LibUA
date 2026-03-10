@@ -25,3 +25,5 @@ packages
 
 # Rider cache/options directory
 .idea/
+
+build/keys/*.snk

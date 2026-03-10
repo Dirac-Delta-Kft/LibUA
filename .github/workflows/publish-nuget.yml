@@ -18,6 +18,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Create strong-name key file
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "build/keys" | Out-Null
+          [IO.File]::WriteAllBytes(
+            "build/keys/DiracDelta.ThirdParty.snk",
+            [Convert]::FromBase64String("${{ secrets.DIRACDELTA_THIRDPARTY_SNK_BASE64 }}"))
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
