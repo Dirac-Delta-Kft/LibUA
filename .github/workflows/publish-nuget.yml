@@ -52,8 +52,18 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      - name: Pack
-        run: dotnet pack --configuration Release --no-build --output ./artifacts
+      - name: Pack LibUA
+        run: dotnet pack .\NET-Core\LibUA\LibUA.csproj --configuration Release --no-build --output ./artifacts
 
       - name: Publish to GitHub Packages
-        run: dotnet nuget push "./artifacts/*.nupkg" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem ./artifacts/*.nupkg |
+            Where-Object { $_.Name -notlike '*.symbols.nupkg' } |
+            Select-Object -First 1
+      
+          if (-not $package) {
+            throw "No package was found in ./artifacts."
+          }
+      
+          dotnet nuget push $package.FullName --source "github" --api-key "${{ secrets.GITHUB_TOKEN }}" --skip-duplicate
